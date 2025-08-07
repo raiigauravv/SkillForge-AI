@@ -2,17 +2,17 @@
 
 [![Python](h### 🎯 Key Architectural Features
 - **🌐 Cloud-Native Ready**: Containerized design with Kubernetes preparation
-- **⚡ Event-Driven Foundation**: Asynchronous processing framework
-- **🤖 AI-First Approach**: ML models integrated at system core
-- **📊 Real-Time Intelligence**: Sub-200ms career analytics processing
-- **🔄 Horizontal Scalability**: Auto-scaling preparation for production
-- **🛡️ Fault Tolerance**: Circuit breakers and graceful degradation
+- **⚡ FastAPI Backend**: High-performance ASGI server with auto-reload
+- **🤖 AI-Powered Agents**: 3 specialized CrewAI agents with OpenAI GPT-4o-mini
+- **📊 Career Intelligence**: ML models for salary prediction and skill analysis  
+- **� Simple Storage**: SQLite database + in-memory dictionaries for development
+- **🌐 Web Interface**: HTML templates with CSS/JS for user interaction
 
-### 🚧 **Current MVP vs. Production Architecture**
-**Current State**: SQLite + In-Memory + MongoDB Config  
-**Production Roadmap**: PostgreSQL + ChromaDB + InfluxDB + S3 + Kubernetes
+### 🎯 **Current MVP Implementation**
+**Data Storage**: SQLite (workflows.db) + In-Memory Dict (workflows_db) + Static Files  
+**AI Intelligence**: OpenAI GPT-4o-mini + Career ML Models + Data Science Engine
 
-**[📖 Complete Architecture Documentation](ARCHITECTURE.md)** | **[🎯 API Reference](http://localhost:8000/docs)**g.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
+**[📖 Architecture Documentation](ARCHITECTURE.md)** | **[🎯 API Reference](http://localhost:8000/docs)**g.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green.svg)](https://fastapi.tiangolo.com/)
 [![CrewAI](https://img.shields.io/badge/CrewAI-0.152.0-orange.svg)](https://github.com/joaomdmoura/crewAI)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o--mini-purple.svg)](https://openai.com/)
@@ -73,13 +73,13 @@
 │  │ • Data Analysis │  │ • Timeline Mgmt │  │ • Automation    │                          │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘                          │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│                           Data Storage (Current MVP)                                     │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐    │
-│  │ SQLite Database │  │  In-Memory Dict │  │ MongoDB Config  │  │  Static Files   │    │
-│  │ (workflows.db)  │  │  (workflows_db) │  │  (Not Active)   │  │  • Templates    │    │
-│  │ • Configuration │  │  • Active Data  │  │  • Future Use   │  │  • CSS/JS       │    │
-│  │ • Settings      │  │  • Runtime State│  │  • Analytics    │  │  • Logs         │    │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘    │
+│                              Data Storage                                                │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                          │
+│  │ SQLite Database │  │  In-Memory Dict │  │  Static Files   │                          │
+│  │ (workflows.db)  │  │  (workflows_db) │  │  • Templates    │                          │
+│  │ • Configuration │  │  • Active Data  │  │  • CSS/JS       │                          │
+│  │ • Settings      │  │  • Runtime State│  │  • Logs         │                          │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘                          │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                            External Dependencies                                         │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                          │
