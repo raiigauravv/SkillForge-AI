@@ -38,48 +38,56 @@
 ### 🌟 High-Level System Overview
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                              SkillForge AI Platform                                      │
-│                          Cloud-Native Architecture                                       │
+│                            SkillForge AI Platform                                        │
+│                        Current Implementation (MVP)                                      │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│                                Frontend Tier                                             │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐    │
-│  │   Web Client    │  │  Mobile App     │  │   Admin Panel   │  │   API Docs      │    │
-│  │   (React/Vue)   │  │  (React Native) │  │   (Angular)     │  │   (Swagger)     │    │
-│  │   • Real-time   │  │   • Offline     │  │   • Analytics   │  │   • Interactive │    │
-│  │   • Responsive  │  │   • Push Notif  │  │   • Monitoring  │  │   • Testing     │    │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘    │
+│                                Frontend Layer                                            │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                          │
+│  │  HTML Templates │  │   Static Files  │  │   FastAPI Docs  │                          │
+│  │  • index.html   │  │  • CSS/JS       │  │  • Auto-generated│                         │
+│  │  • analytics    │  │  • Styling      │  │  • Interactive  │                          │
+│  │  • Jinja2       │  │  • UI Scripts   │  │  • API Testing  │                          │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘                          │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│                              API Gateway & Security                                      │
+│                            FastAPI Backend                                               │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐    │
-│  │   Load Balancer │  │   API Gateway   │  │   Auth Service  │  │   Rate Limiter  │    │
-│  │   (Nginx/HAProxy│  │   (Kong/Zuul)   │  │   (OAuth2/JWT)  │  │   (Redis-based) │    │
-│  │   • SSL Term    │  │   • Routing     │  │   • RBAC        │  │   • Throttling  │    │
-│  │   • Health Chk  │  │   • Versioning  │  │   • Session Mgmt│  │   • Circuit Break│   │
+│  │   Main Server   │  │   API Routes    │  │   CORS Middleware│  │   Health Check  │    │
+│  │  • Uvicorn      │  │  • Workflows    │  │  • Allow Origins│  │  • System Info  │    │
+│  │  • Port 8000    │  │  • Agents       │  │  • All Methods  │  │  • Status Check │    │
+│  │  • Debug Mode   │  │  • Analytics    │  │  • Headers OK   │  │  • API Endpoints│    │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘    │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                         AI/ML Intelligence Layer                                         │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                          │
+│  │  Career Engine  │  │ Data Science    │  │  OpenAI GPT-4   │                          │
+│  │  • Salary Pred  │  │  • ML Models    │  │  • Agent Brain  │                          │
+│  │  • GradBoost    │  │  • Scikit-learn │  │  • Natural Lang │                          │
+│  │  • R² > 0.85    │  │  • Pandas/NumPy │  │  • Smart Response│                         │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘                          │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                           CrewAI Multi-Agent System                                      │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                          │
+│  │ Analysis Agent  │  │ Workflow Agent  │  │ Execution Agent │                          │
+│  │ • Career Intel  │  │ • Process Opt   │  │ • Task Execution│                          │
+│  │ • OpenAI GPT-4  │  │ • Resource Plan │  │ • Implementation│                          │
+│  │ • Data Analysis │  │ • Timeline Mgmt │  │ • Automation    │                          │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘                          │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                           Data Storage (Current MVP)                                     │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐    │
-│  │  Career Engine  │  │  Skill Analyzer │  │ Market Predictor│  │  NLP Processor  │    │
-│  │  • Salary Pred  │  │  • Gap Analysis │  │  • Job Matching │  │  • Sentiment    │    │
-│  │  • GradBoost    │  │  • Skill Vectors│  │  • Trend Forecast│ │  • Intent Recog │    │
-│  │  • R² > 0.97    │  │  • Cosine Sim   │  │  • RandomForest │  │  • Entity Extract│   │
+│  │ SQLite Database │  │  In-Memory Dict │  │ MongoDB Config  │  │  Static Files   │    │
+│  │ (workflows.db)  │  │  (workflows_db) │  │  (Not Active)   │  │  • Templates    │    │
+│  │ • Configuration │  │  • Active Data  │  │  • Future Use   │  │  • CSS/JS       │    │
+│  │ • Settings      │  │  • Runtime State│  │  • Analytics    │  │  • Logs         │    │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘    │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│                           Multi-Agent Orchestration                                      │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐    │
-│  │ Analysis Agent  │  │ Workflow Agent  │  │ Execution Agent │  │  Monitoring     │    │
-│  │ • Career Intel  │  │ • Process Opt   │  │ • Task Exec     │  │  • Health Check │    │
-│  │ • ML Integration│  │ • Resource Alloc│  │ • Automation    │  │  • Performance  │    │
-│  │ • Data Analysis │  │ • Timeline Plan │  │ • Implementation│  │  • Alerting     │    │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘    │
-├─────────────────────────────────────────────────────────────────────────────────────────┤
-│                           Data Storage Layer (Current MVP)                               │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐    │
-│  │ SQLite Database │  │  In-Memory      │  │ MongoDB Config  │  │  Local Files    │    │
-│  │ (workflows.db)  │  │  (workflows_db) │  │  (Configured)   │  │  (Static/Logs)  │    │
-│  │ • Workflow Data │  │  • Active State │  │  • Analytics    │  │  • Templates    │    │
-│  │ • User Sessions │  │  • Temp Storage │  │  • Future Scale │  │  • Uploads      │    │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘    │
+│                            External Dependencies                                         │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                          │
+│  │   OpenAI API    │  │   Python Libs   │  │   Environment   │                          │
+│  │  • GPT-4o-mini  │  │  • FastAPI      │  │  • .env Config  │                          │
+│  │  • API Key Auth │  │  • CrewAI       │  │  • Debug Mode   │                          │
+│  │  • Smart Agents │  │  • Uvicorn      │  │  • Local Dev    │                          │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘                          │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
