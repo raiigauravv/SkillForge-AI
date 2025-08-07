@@ -9,7 +9,7 @@
 - **🌐 Web Interface**: HTML templates with CSS/JS for user interaction
 
 ### 🎯 **Current MVP Implementation**
-**Data Storage**: SQLite (workflows.db) + In-Memory Dict (workflows_db) + Static Files  
+**Data Storage**: Environment Config (.env) + In-Memory Dict (workflows_db) + Static Files  
 **AI Intelligence**: OpenAI GPT-4o-mini + Career ML Models + Data Science Engine
 
 **[📖 Architecture Documentation](ARCHITECTURE.md)** | **[🎯 API Reference](http://localhost:8000/docs)**g.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
@@ -75,10 +75,10 @@
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                              Data Storage                                                │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                          │
-│  │ SQLite Database │  │  In-Memory Dict │  │  Static Files   │                          │
-│  │ (workflows.db)  │  │  (workflows_db) │  │  • Templates    │                          │
+│  │ Environment Cfg │  │  In-Memory Dict │  │  Static Files   │                          │
+│  │ (.env settings) │  │  (workflows_db) │  │  • Templates    │                          │
 │  │ • Configuration │  │  • Active Data  │  │  • CSS/JS       │                          │
-│  │ • Settings      │  │  • Runtime State│  │  • Logs         │                          │
+│  │ • API Keys      │  │  • Runtime State│  │  • Logs         │                          │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘                          │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                            External Dependencies                                         │

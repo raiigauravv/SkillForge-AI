@@ -8,7 +8,7 @@ SkillForge AI is a FastAPI-based career intelligence platform that integrates Op
 - **FastAPI Backend**: Single server application with API routes
 - **CrewAI Multi-Agent**: Analysis, Workflow, and Execution agents
 - **OpenAI Integration**: GPT-4o-mini for intelligent responses
-- **Simple Storage**: SQLite database + in-memory dictionaries
+- **Simple Storage**: Environment configuration + in-memory dictionaries
 - **Web Interface**: HTML templates with static CSS/JS files
 
 ## 🏛️ Current System Architecture
@@ -52,10 +52,10 @@ SkillForge AI is a FastAPI-based career intelligence platform that integrates Op
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                              Data Storage                                                │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                          │
-│  │ SQLite Database │  │  In-Memory Dict │  │  Static Files   │                          │
-│  │ (workflows.db)  │  │  (workflows_db) │  │  • Templates    │                          │
+│  │ Environment Cfg │  │  In-Memory Dict │  │  Static Files   │                          │
+│  │ (.env settings)  │  │  (.env settings) │  │  • Templates    │                          │
 │  │ • Configuration │  │  • Active Data  │  │  • CSS/JS       │                          │
-│  │ • Settings      │  │  • Runtime State│  │  • Logs         │                          │
+│  │ • API Keys      │  │  • Runtime State│  │  • Logs         │                          │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘                          │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                            External Dependencies                                         │
@@ -80,10 +80,10 @@ SkillForge AI is a FastAPI-based career intelligence platform that integrates Op
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                              Data Storage                                                │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐                          │
-│  │ SQLite Database │  │  In-Memory Dict │  │  Static Files   │                          │
-│  │ (workflows.db)  │  │  (workflows_db) │  │  • Templates    │                          │
+│  │ Environment Cfg │  │  In-Memory Dict │  │  Static Files   │                          │
+│  │ (.env settings)  │  │  (.env settings) │  │  • Templates    │                          │
 │  │ • Configuration │  │  • Active Data  │  │  • CSS/JS       │                          │
-│  │ • Settings      │  │  • Runtime State│  │  • Logs         │                          │
+│  │ • API Keys      │  │  • Runtime State│  │  • Logs         │                          │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘                          │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
 │                            External Dependencies                                         │
@@ -164,7 +164,7 @@ CrewAI/
 - **Visualization**: Plotly for chart generation
 
 ### 4. Data Storage
-- **SQLite Database**: `workflows.db` for persistent configuration
+- **Environment Config**: `.env` file for settings and API keys
 - **In-Memory Dictionary**: `workflows_db` for runtime state
 - **Static Files**: Templates, CSS, JS, and logs
 

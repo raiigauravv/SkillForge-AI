@@ -18,7 +18,6 @@ from api.routes.analytics_routes import router as analytics_router
 from api.routes.career_intelligence_routes import router as career_intelligence_router
 from src.config.settings import Settings
 from src.utils.logger import setup_logging
-from database.mongodb_config import db_manager
 
 # Load environment variables
 load_dotenv()
@@ -110,10 +109,29 @@ if __name__ == "__main__":
     logger.info(f"Running on {settings.HOST}:{settings.PORT}")
     logger.info("Framework: CrewAI - Multi-Agent Workflow Automation")
     
+    # Configure reload to exclude virtual environment and other unnecessary files
+    reload_excludes = [
+        "venv/*",
+        ".venv/*", 
+        "env/*",
+        ".env/*",
+        "__pycache__/*",
+        "*.pyc",
+        "*.pyo",
+        "*.pyd",
+        ".git/*",
+        ".pytest_cache/*",
+        "node_modules/*",
+        "*.log",
+        ".DS_Store",
+        "*.lock"
+    ] if settings.DEBUG else None
+    
     uvicorn.run(
         "main:app",
         host=settings.HOST,
         port=settings.PORT,
         reload=settings.DEBUG,
+        reload_excludes=reload_excludes,
         log_level=settings.LOG_LEVEL.lower()
     )
