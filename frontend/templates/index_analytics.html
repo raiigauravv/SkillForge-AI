@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillForge AI - Career Intelligence Platform</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/analytics.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 SkillForge AI</h1>
+            <p class="subtitle">Data Science Enhanced Multi-Agent System</p>
+            <nav class="tab-navigation">
+                <button class="tab-button active" onclick="showTab('workflows')">Workflows</button>
+                <button class="tab-button" onclick="showTab('agents')">Agent Interactions</button>
+                <button class="tab-button" onclick="showTab('analytics')">📊 Analytics Dashboard</button>
+                <button class="tab-button" onclick="showTab('ml-insights')">🤖 ML Insights</button>
+            </nav>
+        </header>
+
+        <!-- Workflows Tab -->
+        <div id="workflows-tab" class="tab-content active">
+            <h2>Create Workflow</h2>
+            <form id="workflow-form">
+                <div class="form-group">
+                    <label for="name">Workflow Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Business Problem Description:</label>
+                    <textarea id="description" name="description" rows="4" required 
+                              placeholder="Describe your specific business problem in detail..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="industry">Industry:</label>
+                    <select id="industry" name="industry">
+                        <option value="technology">Technology</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="finance">Finance</option>
+                        <option value="retail">Retail</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="education">Education</option>
+                        <option value="hospitality">Hospitality</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="priority">Priority:</label>
+                    <select id="priority" name="priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                
+                <button type="submit">🚀 Execute Workflow</button>
+            </form>
+
+            <div id="workflow-results" class="results-section" style="display: none;">
+                <h3>📋 Workflow Results</h3>
+                <div id="workflow-output"></div>
+            </div>
+
+            <div class="workflows-list">
+                <h3>📊 Recent Workflows</h3>
+                <div id="workflows-container">
+                    <p>Loading workflows...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agents Tab -->
+        <div id="agents-tab" class="tab-content">
+            <h2>🤖 Agent Interactions</h2>
+            <div class="agents-grid">
+                <div class="agent-card" data-agent="strategic_analyst">
+                    <h3>🎯 Strategic Analyst</h3>
+                    <p>Analyzes business problems and identifies key challenges</p>
+                    <button onclick="interactWithAgent('strategic_analyst')">Interact</button>
+                </div>
+                
+                <div class="agent-card" data-agent="workflow_orchestrator">
+                    <h3>⚙️ Workflow Orchestrator</h3>
+                    <p>Creates structured action plans and coordinates tasks</p>
+                    <button onclick="interactWithAgent('workflow_orchestrator')">Interact</button>
+                </div>
+                
+                <div class="agent-card" data-agent="automation_specialist">
+                    <h3>🛠️ Automation Specialist</h3>
+                    <p>Focuses on automation opportunities and implementation</p>
+                    <button onclick="interactWithAgent('automation_specialist')">Interact</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Dashboard Tab -->
+        <div id="analytics-tab" class="tab-content">
+            <h2>📊 Analytics Dashboard</h2>
+            <div class="analytics-controls">
+                <button onclick="refreshAnalytics()" class="refresh-btn">🔄 Refresh Data</button>
+                <button onclick="exportAnalytics()" class="export-btn">📥 Export Data</button>
+            </div>
+            <div id="analytics-dashboard-container">
+                <p>Loading analytics dashboard...</p>
+            </div>
+        </div>
+
+        <!-- ML Insights Tab -->
+        <div id="ml-insights-tab" class="tab-content">
+            <h2>🤖 Machine Learning Insights</h2>
+            <div class="ml-insights-grid">
+                <div class="insight-card">
+                    <h3>🎯 Success Prediction Model</h3>
+                    <div id="prediction-metrics"></div>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>🔍 Workflow Pattern Clusters</h3>
+                    <div id="clustering-analysis"></div>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>💡 AI Recommendations</h3>
+                    <div id="ml-recommendations"></div>
+                </div>
+                
+                <div class="insight-card">
+                    <h3>📈 Performance Metrics</h3>
+                    <div id="performance-metrics"></div>
+                </div>
+            </div>
+            
+            <div class="ml-actions">
+                <button onclick="refreshMLInsights()" class="ml-btn">🔄 Refresh ML Analysis</button>
+                <button onclick="downloadMLReport()" class="ml-btn">📊 Download ML Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="agent-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modal-agent-title"></h3>
+            <div id="modal-agent-content"></div>
+            <textarea id="agent-input" placeholder="Ask your question or describe your problem..."></textarea>
+            <button id="send-to-agent">Send Message</button>
+        </div>
+    </div>
+
+    <div id="workflow-result-modal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h3>🎯 Workflow Execution Results</h3>
+            <div id="workflow-result-content"></div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+    <script src="/static/analytics.js"></script>
+</body>
+</html>
