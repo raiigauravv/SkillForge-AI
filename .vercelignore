@@ -1,0 +1,42 @@
+# Development files
+.env
+.vscode/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Logs
+*.log
+logs/
+
+# Testing
+tests/
+
+# Documentation
+docs/
+*.md
+
+# Git
+.git/
+.github/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Large datasets
+data/large/
+*.csv
+*.json.gz
