@@ -1,6 +1,18 @@
 # 🚀 SkillForge AI - AI-Powered Career Intelligence Platform
 
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
+[![Python](h### 🎯 Key Architectural Features
+- **🌐 Cloud-Native Ready**: Containerized design with Kubernetes preparation
+- **⚡ Event-Driven Foundation**: Asynchronous processing framework
+- **🤖 AI-First Approach**: ML models integrated at system core
+- **📊 Real-Time Intelligence**: Sub-200ms career analytics processing
+- **🔄 Horizontal Scalability**: Auto-scaling preparation for production
+- **🛡️ Fault Tolerance**: Circuit breakers and graceful degradation
+
+### 🚧 **Current MVP vs. Production Architecture**
+**Current State**: SQLite + In-Memory + MongoDB Config  
+**Production Roadmap**: PostgreSQL + ChromaDB + InfluxDB + S3 + Kubernetes
+
+**[📖 Complete Architecture Documentation](ARCHITECTURE.md)** | **[🎯 API Reference](http://localhost:8000/docs)**g.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green.svg)](https://fastapi.tiangolo.com/)
 [![CrewAI](https://img.shields.io/badge/CrewAI-0.152.0-orange.svg)](https://github.com/joaomdmoura/crewAI)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o--mini-purple.svg)](https://openai.com/)
@@ -61,13 +73,14 @@
 │  │ • Data Analysis │  │ • Timeline Plan │  │ • Implementation│  │  • Alerting     │    │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘    │
 ├─────────────────────────────────────────────────────────────────────────────────────────┤
-│                           Data Storage Layer                                             │
+│                           Data Storage Layer (Current MVP)                               │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐    │
-│  │ Primary Database│  │  Vector Store   │  │ Time Series DB  │  │  File Storage   │    │
-│  │ (PostgreSQL)    │  │  (ChromaDB)     │  │  (InfluxDB)     │  │  (S3/MinIO)     │    │
-│  │ • User Data     │  │  • Embeddings   │  │  • Metrics      │  │  • Documents    │    │
-│  │ • Transactions  │  │  • Similarity   │  │  • Analytics    │  │  • ML Models    │    │
+│  │ SQLite Database │  │  In-Memory      │  │ MongoDB Config  │  │  Local Files    │    │
+│  │ (workflows.db)  │  │  (workflows_db) │  │  (Configured)   │  │  (Static/Logs)  │    │
+│  │ • Workflow Data │  │  • Active State │  │  • Analytics    │  │  • Templates    │    │
+│  │ • User Sessions │  │  • Temp Storage │  │  • Future Scale │  │  • Uploads      │    │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘  └─────────────────┘    │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
