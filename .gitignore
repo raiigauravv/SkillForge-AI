@@ -99,3 +99,4 @@ data/sensitive/
 secrets.json
 credentials.json
 **/config/secrets.py
+.vercel
