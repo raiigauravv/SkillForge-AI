@@ -1,15 +1,10 @@
 """
-SkillForge AI - Minimal Production App (No External Dependencies)
+Vercel Python Handler - Index Entry Point
 """
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import logging
 from datetime import datetime
-
-# Setup basic logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 # Create FastAPI app
 app = FastAPI(
@@ -97,6 +92,5 @@ async def list_agents():
         "status": "production_ready"
     }
 
-# Vercel handler - standard approach
-app_handler = app
-handler = app_handler
+# This is the standard Vercel pattern
+handler = app
