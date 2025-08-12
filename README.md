@@ -36,66 +36,63 @@
 
 ## 🏗️ **System Architecture**
 
-SkillForge AI is a North American career intelligence platform built with **FastAPI backend**, **CrewAI multi-agent system**, and **machine learning analytics** serving **14 major cities** across Canada and USA. The system processes **3000 career profiles** with **93.6% salary prediction accuracy** using a 6-layer architecture:
+SkillForge AI is a **North American career intelligence platform** serving **14 major cities** across Canada and USA with **93.6% ML prediction accuracy**.
 
-**Frontend Layer** → **API Gateway** → **Multi-Agent Intelligence** → **ML Engine** → **Database Layer** → **Configuration**
+```ascii
+                    ┌─────────────────────────────────────────────────────────────┐
+                    │                    🌐 FRONTEND LAYER                        │
+                    │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
+                    │  │   index.html│  │  script.js  │  │   style.css │         │
+                    │  │  🇨🇦🇺🇸 Cities │  │ Interactions│  │   Design    │         │
+                    │  └─────────────┘  └─────────────┘  └─────────────┘         │
+                    └─────────────────────┬───────────────────────────────────────┘
+                                          │ HTTP/JSON
+                    ┌─────────────────────▼───────────────────────────────────────┐
+                    │                ⚡ FASTAPI GATEWAY                           │
+                    │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
+                    │  │Career Intel │ │ Workflows   │ │  Analytics  │           │
+                    │  │   Routes    │ │   Routes    │ │   Routes    │           │
+                    │  └─────────────┘ └─────────────┘ └─────────────┘           │
+                    └─────────┬─────────────────┬─────────────────┬───────────────┘
+                              │                 │                 │
+        ┌─────────────────────▼─────────────────▼─────────────────▼───────────────┐
+        │                     🧠 CREWAI MULTI-AGENT SYSTEM                        │
+        │   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐                  │
+        │   │ Analysis    │   │ Workflow    │   │ Execution   │                  │
+        │   │ Agent       │◄──┤ Agent       ├──►│ Agent       │                  │
+        │   │ Strategy    │   │ Orchestrate │   │ Implement   │                  │
+        │   └─────────────┘   └─────────────┘   └─────────────┘                  │
+        └─────────────────────────────────┬─────────────────────────────────────┘
+                                          │
+        ┌─────────────────────────────────▼─────────────────────────────────────┐
+        │                 🎯 ML CAREER INTELLIGENCE ENGINE                       │
+        │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐     │
+        │  │ Salary      │ │ Job         │ │ Career      │ │ Market      │     │
+        │  │ Predictor   │ │ Matcher     │ │ Classifier  │ │ Analyzer    │     │
+        │  │ 93.6% R²    │ │ 74% Acc     │ │ 100% Acc    │ │ 14 Cities   │     │
+        │  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘     │
+        └─────────────────────────────────┬─────────────────────────────────────┘
+                                          │
+        ┌─────────────────────────────────▼─────────────────────────────────────┐
+        │                        � DATABASE LAYER                              │
+        │     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐           │
+        │     │   SQLite    │     │   MongoDB   │     │  In-Memory  │           │
+        │     │ Workflows   │     │  Analytics  │     │    Cache    │           │
+        │     │ Execution   │     │   Sessions  │     │   States    │           │
+        │     └─────────────┘     └─────────────┘     └─────────────┘           │
+        └─────────────────────────────────────────────────────────────────────┘
 
-```
-🌐 Frontend (HTML5/JS/CSS)
-├── 📱 templates/index.html          # North American city selector (🇨🇦🇺🇸)
-├── 🎨 static/script.js              # Career analysis, workflow creation, API calls
-├── 💅 static/style.css              # Responsive design, agent cards
-└── 📊 static/analytics.js           # Dashboard visualization
-
-⚡ FastAPI Gateway  
-├── 🔌 career_intelligence_routes.py  # ML predictions, market analysis
-├── 🔄 workflow_routes.py            # CrewAI workflow CRUD, background execution  
-├── 🤖 agent_routes.py               # Multi-agent interactions
-├── 📊 analytics_routes.py           # Dashboard data endpoints
-└── 🛡️ middleware/                   # CORS, request validation
-
-🧠 CrewAI Multi-Agent Intelligence
-├── 🤖 Analysis Agent        # Strategic career planning, market research
-├── 🔄 Workflow Agent        # Process orchestration, task breakdown
-└── ⚡ Execution Agent       # Implementation planning, resource allocation
-
-🎯 ML Career Intelligence Engine
-├── 💰 Salary Predictor      # Gradient Boosting (93.6% R²)
-├── 🎯 Job Matcher          # Random Forest (74% accuracy)
-├── 📈 Career Classifier     # Random Forest (100% accuracy)
-└── 🗺️ Market Analyzer       # North American market insights
-
-💾 Database Layer
-├── 🗃️ SQLite               # Workflow persistence, execution history
-├── 🍃 MongoDB              # Career data, user sessions
-└── 💾 In-Memory Store      # Active workflow states, cache
-
-🌍 North American Market Data (14 Cities)
-🇨🇦 Canada (CAD): Toronto (1.2x), Vancouver (1.15x), Montreal (1.0x), Ottawa (1.1x), Calgary (1.08x), Edmonton (1.05x)
-🇺🇸 USA (USD): San Francisco (1.8x), New York (1.6x), Seattle (1.4x), Boston (1.3x), Los Angeles (1.25x), Austin (1.2x), Chicago (1.15x), Denver (1.1x)
-```
-
-**System Flows:** User Input → Frontend Validation → FastAPI → ML Engine → Market Analysis → Currency Detection → Dashboard → JSON Response | Workflow Creation → CrewAI Agents → Strategic Planning → Task Breakdown → SQLite Storage | Background Execution → FastAPI Tasks → CrewAI Processing → Status Updates → Result Storage
-
-**Tech Stack:** Frontend (HTML5/CSS3/JS), API (FastAPI + Uvicorn), Intelligence (CrewAI + OpenAI), ML (Scikit-learn), Data (Pandas + NumPy), Database (SQLite + MongoDB), Runtime (Python 3.9+)
-
-**Key Decisions:** Multi-Agent Architecture for complex career planning, Dual USD/CAD market support with regional multipliers, Background processing for long-running operations, Pre-trained ML models for performance, RESTful API design, Responsive vanilla JS frontend
-
-**Performance:** 93.6% salary prediction accuracy, 3000 North American profiles, <200ms API response, 30-60s workflow generation, 2-3min background execution
-
-## 🚀 Quick Start
-
-### Prerequisites
-├── 🔌 routes/
-│   ├── career_intelligence_routes.py  # ML predictions, market analysis
-│   ├── workflow_routes.py            # CrewAI workflow CRUD, background execution
-│   ├── agent_routes.py               # Multi-agent interactions
-│   └── analytics_routes.py           # Dashboard data endpoints
-└── 🛡️ middleware/                    # CORS, request validation
+        🌍 North American Coverage: 🇨🇦 6 Canadian + 🇺🇸 8 US Cities
+        ⚡ Performance: <200ms API │ 3000 Profiles │ 93.6% ML Accuracy
+        🛠️ Stack: FastAPI + CrewAI + Scikit-learn + SQLite/MongoDB
 ```
 
-**Technologies**: FastAPI, Pydantic, Background Tasks, HTTP Exception Handling  
-**Endpoints**: REST API with async support, JSON responses, Error handling
+**System Flow:** `User Request` → `Frontend Validation` → `FastAPI Routes` → `CrewAI Agents` → `ML Processing` → `Database Storage` → `JSON Response`
+
+**Key Features:** Multi-agent career planning • Dual USD/CAD markets • Real-time ML predictions • Background workflow processing
+
+---
+Made with ❤️ by **Gaurav Rai**
 
 #### **3. Multi-Agent Intelligence (CrewAI)**
 ```
