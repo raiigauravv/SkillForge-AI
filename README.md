@@ -1,4 +1,4 @@
-# 🚀 SkillForge AI - AI-Powered Career Intelligence Platform
+# 🚀 SkillForge AI - North American Career Intelligence Platform
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Latest-green.svg)](https://fastapi.tiangolo.com/)
@@ -8,34 +8,47 @@
 
 ## 🎯 Overview
 
-**SkillForge AI** is a sophisticated AI-powered career intelligence platform that revolutionizes professional development through advanced machine learning, multi-agent systems, and real-time Canadian job market analysis. Built with CrewAI framework and powered by state-of-the-art ML models, it provides personalized career guidance, skill assessment, and data-driven career advancement strategies.
+**SkillForge AI** is a sophisticated AI-powered career intelligence platform that revolutionizes professional development through advanced machine learning, multi-agent systems, and comprehensive North American job market analysis. Built with CrewAI framework and powered by state-of-the-art ML models, it provides personalized career guidance, skill assessment, and data-driven career advancement strategies across Canada and the United States.
 
 ### 🌟 Key Features
 
-- **🤖 AI-Powered Career Analysis**: ML models with 97.7% accuracy for salary predictions
+- **🤖 AI-Powered Career Analysis**: ML models with 93.6% accuracy for salary predictions
 - **👥 Multi-Agent Intelligence**: CrewAI framework with specialized agents for analysis, workflow, and execution
-- **📊 Real-time Market Intelligence**: Live Canadian job market data and trend analysis
+- **🌍 North American Market Intelligence**: Real-time job market data and trend analysis for 14 major cities
 - **🎯 Personalized Skill Assessment**: Comprehensive skill gap analysis with improvement roadmaps
-- **💰 Salary Intelligence**: Accurate CAD salary predictions based on 2000+ Canadian professionals
-- **🔍 Job Match Analysis**: 87% accurate job matching with probability scores
-- **📈 Career Roadmaps**: Phase-by-phase career advancement plans with timelines
-- **🇨🇦 Canadian Market Focus**: Specialized for Canadian job market and salary standards
+- **💰 Dual Currency Intelligence**: Accurate CAD/USD salary predictions based on 3000+ North American professionals
+- **🔍 Enhanced Job Match Analysis**: 74% accurate job matching with probability scores
+- **📈 Strategic Career Roadmaps**: Phase-by-phase career advancement plans with timelines
+- **🇨🇦🇺🇸 Cross-Border Market Coverage**: Specialized for Canadian and US job markets with regional multipliers
+
+### 🌍 Geographic Coverage
+
+**🇨🇦 Canadian Cities (CAD)**
+- Toronto, Vancouver, Montreal, Ottawa, Calgary, Edmonton
+
+**🇺🇸 US Cities (USD)**  
+- New York, San Francisco, Seattle, Austin, Boston, Chicago, Los Angeles, Denver
+
+**💱 Currency Features**
+- Automatic CAD/USD detection based on city selection
+- Regional salary multipliers (San Francisco: 1.8x, New York: 1.6x, Toronto: 1.2x)
+- Cross-border career opportunity analysis
 
 ## 🏗️ Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        SkillForge AI Platform                   │
+│                  SkillForge AI Platform v1.0.0                  │
 ├─────────────────────────────────────────────────────────────────┤
 │  Frontend (HTML/JS) → FastAPI → Multi-Agent Layer → ML Engine  │
 │       ↓                 ↓           ↓                    ↓      │
-│  User Interface → API Gateway → CrewAI Agents → Career Intel    │
+│  🇨🇦🇺🇸 City Selector → API Gateway → CrewAI Agents → Career Intel │
 │       ↓                 ↓           ↓                    ↓      │
-│  Real-time UI → Rate Limiting → Task Distribution → ML Models  │
+│  Real-time UI → Background Tasks → Task Distribution → 3K Models │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-**[📖 Detailed Architecture Documentation](ARCHITECTURE.md)**
+**[📖 Detailed Architecture Documentation](FINAL_ARCHITECTURE.md)**
 
 ## 🚀 Quick Start
 
@@ -118,7 +131,11 @@ WORKFLOW_MAX_STEPS=50
 **Specialization**: Career Intelligence & Market Analysis
 - Real-time salary predictions (CAD $75K-$180K+ range)
 - Skill gap analysis with improvement timelines
-- Canadian job market expertise
+- Advanced ML algorithms for career prediction
+- Real-time data processing and analysis
+- Multi-agent coordination and task distribution
+- Cross-border market expertise (Canada + USA)
+- Dual currency salary analysis (CAD/USD)
 - Industry benchmark analysis
 
 ### ⚙️ Workflow Agent
@@ -141,14 +158,14 @@ WORKFLOW_MAX_STEPS=50
 
 #### 🎯 Salary Prediction Model
 - **Algorithm**: Gradient Boosting Regressor
-- **Performance**: R² > 0.85 (97.7% accuracy)
-- **Training Data**: 2000+ Canadian professional profiles
-- **Features**: Skills, Experience, Location, Education
+- **Performance**: R² = 0.936 (93.6% accuracy)
+- **Training Data**: 3000+ North American professional profiles
+- **Features**: Skills, Experience, Location, Education, Currency
 
 #### 🎯 Job Match Probability
-- **Algorithm**: Random Forest Classifier
-- **Performance**: 87% classification accuracy
-- **Output**: Probability scores for job compatibility
+- **Algorithm**: Random Forest Classifier  
+- **Performance**: 74% classification accuracy
+- **Output**: Probability scores for job compatibility across 14 cities
 - **Features**: Skill vectors, Portfolio quality, Experience level
 
 #### 🎯 Skill Gap Analysis
@@ -214,9 +231,9 @@ Content-Type: application/json
 
 ### 🎓 For Job Seekers
 - **Skill Assessment**: Get accurate skill level ratings (1-10 scale)
-- **Salary Intelligence**: Discover your market value in Canadian job market
-- **Career Roadmaps**: Receive personalized advancement strategies
-- **Job Matching**: Find roles with high compatibility scores
+- **Salary Intelligence**: Discover your market value in North American job market (CAD/USD)
+- **Career Roadmaps**: Receive personalized advancement strategies across 14 cities
+- **Job Matching**: Find roles with high compatibility scores in Canada and USA
 
 ### 🏢 For Career Counselors
 - **Client Analysis**: Comprehensive skill and career assessments
@@ -264,16 +281,18 @@ Timeline: 2-3 months focused improvement
 ```
 
 ### Career Analysis Query
-**User**: "Analyze my data science career prospects in Toronto"
+**User**: "Analyze my data science career prospects in San Francisco"
 
 **SkillForge AI Response**:
 ```
-🇨🇦 CANADIAN DATA SCIENCE MARKET ANALYSIS - TORONTO
+�� NORTH AMERICAN DATA SCIENCE MARKET ANALYSIS - SAN FRANCISCO
 
 📊 YOUR PROFILE ANALYSIS:
-• Location: Toronto (Prime tech hub - 15% salary premium)
+• Location: San Francisco (Top tech hub - 80% salary premium vs baseline)
+• Currency: USD market with high cost of living adjustments
 • Skill Level: Python 7.0/10, SQL 6.5/10, ML 5.5/10
 • Experience: Intermediate (3+ years)
+• Cross-Border Opportunities: Seattle, New York, Toronto available
 • Market Position: 68th percentile overall
 
 💰 SALARY INTELLIGENCE:
@@ -374,10 +393,12 @@ python -m pytest tests/test_agents.py
 - **Memory Usage**: Optimized with pre-trained models
 
 ### ML Model Performance
-- **Salary Prediction Accuracy**: R² > 0.85 (97.7%)
-- **Job Matching Accuracy**: 87% classification accuracy
-- **Skill Analysis Precision**: Real-time gap identification
-- **Training Data Size**: 2000+ Canadian professional profiles
+- **Salary Prediction Accuracy**: R² = 0.936 (93.6% accuracy)
+- **Job Matching Accuracy**: 74% classification accuracy  
+- **Skill Analysis Precision**: Real-time gap identification across 14 cities
+- **Training Data Size**: 3000+ North American professional profiles
+- **Geographic Coverage**: 6 Canadian + 8 US cities
+- **Currency Support**: CAD/USD dual-market analysis
 
 ## � Deployment
 
@@ -432,7 +453,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **CrewAI Team**: For the amazing multi-agent framework
 - **OpenAI**: For providing powerful language models
 - **FastAPI Team**: For the excellent web framework
-- **Canadian Job Market Data**: Various job boards and career sites
+- **North American Job Market Data**: Canadian and US job boards and career sites
+- **Regional Market Research**: Cost of living and salary data for 14 major cities
 - **Open Source Community**: For the tools and libraries that make this possible
 
 ## 📞 Support
