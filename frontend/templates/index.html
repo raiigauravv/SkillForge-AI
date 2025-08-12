@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillForge AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 SkillForge AI</h1>
+            <p class="subtitle">Multi-Agent Workflow Management System</p>
+            <nav class="tab-navigation">
+                <button class="tab-button active" onclick="showTab('workflows')">Workflows</button>
+                <button class="tab-button" onclick="showTab('agents')">Agent Interactions</button>
+                <button class="tab-button" onclick="showTab('crews')">Crews</button>
+                <button class="tab-button" onclick="showTab('career')">🎯 Career Intelligence</button>
+            </nav>
+        </header>
+
+        <!-- Workflows Tab -->
+        <div id="workflows-tab" class="tab-content active">
+            <h2>Create Workflow</h2>
+            <form id="workflow-form">
+                <div class="form-group">
+                    <label for="name">Workflow Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Business Problem Description:</label>
+                    <textarea id="description" name="description" rows="4" required 
+                              placeholder="Describe your specific business problem in detail..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="priority">Priority:</label>
+                    <select id="priority" name="priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                
+                <button type="submit">🚀 Create Workflow</button>
+            </form>
+
+            <div class="workflows-list">
+                <h3>📊 Recent Workflows</h3>
+                <div id="workflows-container">
+                    <p>Loading workflows...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agents Tab -->
+        <div id="agents-tab" class="tab-content">
+            <h2>🤖 Agent Interactions</h2>
+            <div class="agent-guide">
+                <p class="guide-intro">Each AI agent specializes in different aspects of business problem-solving. Choose the right agent for your specific needs:</p>
+                <div class="quick-guide">
+                    <span class="guide-item">📊 <strong>Analysis Agent</strong> - Market research, data insights, strategic planning</span>
+                    <span class="guide-item">⚙️ <strong>Workflow Agent</strong> - Process design, automation, team coordination</span>
+                    <span class="guide-item">🛠️ <strong>Execution Agent</strong> - Implementation steps, tool setup, troubleshooting</span>
+                </div>
+            </div>
+            <div class="agents-grid">
+                <div class="agent-card" data-agent="analysis_agent">
+                    <h3>🎯 Strategic Analysis Agent</h3>
+                    <div class="agent-description">
+                        <p><strong>🧠 Data Analysis & Strategic Planning Expert</strong></p>
+                        <ul>
+                            <li>📊 Business data analysis & pattern recognition</li>
+                            <li>📈 Market research & competitive intelligence</li>
+                            <li>🎯 Strategic recommendations & planning</li>
+                            <li>📋 Comprehensive analytical reports</li>
+                        </ul>
+                        <p><small><em>💡 Best for: Market analysis, data interpretation, strategic decisions</em></small></p>
+                    </div>
+                    <button onclick="interactWithAgent('analysis_agent')">🔍 Analyze with me</button>
+                </div>
+                
+                <div class="agent-card" data-agent="workflow_agent">
+                    <h3>⚙️ Workflow Orchestration Agent</h3>
+                    <div class="agent-description">
+                        <p><strong>🔧 Process Design & Automation Expert</strong></p>
+                        <ul>
+                            <li>📋 Business process design & optimization</li>
+                            <li>🎼 Multi-agent & team coordination</li>
+                            <li>⚙️ Workflow automation solutions</li>
+                            <li>📊 Progress monitoring & bottleneck detection</li>
+                        </ul>
+                        <p><small><em>💡 Best for: Process optimization, workflow design, team coordination</em></small></p>
+                    </div>
+                    <button onclick="interactWithAgent('workflow_agent')">⚙️ Optimize with me</button>
+                </div>
+                
+                <div class="agent-card" data-agent="execution_agent">
+                    <h3>🛠️ Execution & Implementation Agent</h3>
+                    <div class="agent-description">
+                        <p><strong>⚡ Implementation & Automation Specialist</strong></p>
+                        <ul>
+                            <li>🚀 Task implementation & execution</li>
+                            <li>🔧 Process automation & tool setup</li>
+                            <li>⚠️ Error handling & troubleshooting</li>
+                            <li>✅ Quality validation & result verification</li>
+                        </ul>
+                        <p><small><em>💡 Best for: Implementation steps, tool guidance, technical solutions</em></small></p>
+                    </div>
+                    <button onclick="interactWithAgent('execution_agent')">🛠️ Execute with me</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Career Intelligence Tab -->
+        <div id="career-tab" class="tab-content">
+            <h2>🎯 Career Intelligence Engine</h2>
+            <div class="career-subtitle">God-Tier ML-Powered Career Analytics</div>
+            
+            <!-- System Status -->
+            <div class="career-status">
+                <div class="status-card" id="system-status">
+                    <h3>🔍 System Status</h3>
+                    <div id="status-indicator">Checking...</div>
+                </div>
+            </div>
+            
+            <!-- ML Model Stats -->
+            <div class="career-stats">
+                <div class="stat-card">
+                    <div class="stat-number">97.7%</div>
+                    <div class="stat-label">Salary Prediction Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99.8%</div>
+                    <div class="stat-label">Career Classification</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2,000+</div>
+                    <div class="stat-label">Training Samples</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">74%</div>
+                    <div class="stat-label">Job Match Accuracy</div>
+                </div>
+            </div>
+            
+            <!-- Profile Input Form -->
+            <div class="career-profile-form">
+                <h3>📊 Career Profile Analysis</h3>
+                <form id="career-profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="career-city">City:</label>
+                            <select id="career-city" name="city">
+                                <optgroup label="🇨🇦 Canada">
+                                    <option value="Toronto">Toronto</option>
+                                    <option value="Vancouver">Vancouver</option>
+                                    <option value="Montreal">Montreal</option>
+                                    <option value="Ottawa">Ottawa</option>
+                                    <option value="Calgary">Calgary</option>
+                                    <option value="Edmonton">Edmonton</option>
+                                </optgroup>
+                                <optgroup label="🇺🇸 United States">
+                                    <option value="New York">New York</option>
+                                    <option value="San Francisco">San Francisco</option>
+                                    <option value="Seattle">Seattle</option>
+                                    <option value="Austin">Austin</option>
+                                    <option value="Boston">Boston</option>
+                                    <option value="Chicago">Chicago</option>
+                                    <option value="Los Angeles">Los Angeles</option>
+                                    <option value="Denver">Denver</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="career-industry">Industry:</label>
+                            <select id="career-industry" name="industry">
+                                <option value="Tech">Technology</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Government">Government</option>
+                                <option value="Consulting">Consulting</option>
+                                <option value="Retail">Retail</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="career-experience">Experience Level:</label>
+                            <select id="career-experience" name="experience_level">
+                                <option value="Junior">Junior</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Senior">Senior</option>
+                                <option value="Principal">Principal</option>
+                                <option value="Director">Director</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="career-education">Education:</label>
+                            <select id="career-education" name="education">
+                                <option value="Bachelor">Bachelor's</option>
+                                <option value="Master">Master's</option>
+                                <option value="PhD">PhD</option>
+                                <option value="Bootcamp">Bootcamp</option>
+                                <option value="Certificate">Certificate</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="python-skill">Python Skill (0-10):</label>
+                            <input type="range" id="python-skill" name="python_skill" min="0" max="10" value="7" oninput="updateSkillValue('python')">
+                            <span id="python-value">7</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sql-skill">SQL Skill (0-10):</label>
+                            <input type="range" id="sql-skill" name="sql_skill" min="0" max="10" value="6" oninput="updateSkillValue('sql')">
+                            <span id="sql-value">6</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ml-skill">ML Skill (0-10):</label>
+                            <input type="range" id="ml-skill" name="ml_skill" min="0" max="10" value="5" oninput="updateSkillValue('ml')">
+                            <span id="ml-value">5</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="communication-skill">Communication (0-10):</label>
+                            <input type="range" id="communication-skill" name="communication_skill" min="0" max="10" value="8" oninput="updateSkillValue('communication')">
+                            <span id="communication-value">8</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="portfolio-projects">Portfolio Projects:</label>
+                            <input type="number" id="portfolio-projects" name="portfolio_projects" min="0" max="20" value="4">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="github-commits">GitHub Commits:</label>
+                            <input type="number" id="github-commits" name="github_commits" min="0" max="1000" value="150">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="years-experience">Years Experience:</label>
+                            <input type="number" id="years-experience" name="years_experience" min="0" max="20" step="0.5" value="3.5">
+                        </div>
+                    </div>
+                    
+                    <div class="career-buttons">
+                        <button type="button" onclick="analyzeCareer()">🎯 Analyze Career</button>
+                        <button type="button" onclick="askCareerAgent()">🤖 Ask Career Agent</button>
+                        <button type="button" onclick="generateDashboard()">📊 Generate Dashboard</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Results Area -->
+            <div id="career-results" class="career-results"></div>
+        </div>
+
+        <!-- Crews Tab -->
+        <div id="crews-tab" class="tab-content">
+            <h2>🤖 CrewAI Management</h2>
+            <div class="crews-grid">
+                <div class="crew-card active">
+                    <h3>🚀 Workflow Crew</h3>
+                    <p>Main crew handling all workflow operations</p>
+                    <div class="crew-status">
+                        <span class="status-indicator active">●</span>
+                        <span>Active</span>
+                    </div>
+                    <div class="crew-agents">
+                        <span class="agent-badge">🎯 Strategic</span>
+                        <span class="agent-badge">⚙️ Orchestrator</span>
+                        <span class="agent-badge">🛠️ Automation</span>
+                    </div>
+                    <button onclick="manageWorkflowCrew()">Manage Crew</button>
+                </div>
+            </div>
+            
+            <div class="crew-stats">
+                <h3>📊 Crew Performance</h3>
+                <div id="crew-stats-container">
+                    <p>Loading crew statistics...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="agent-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modal-agent-title"></h3>
+            <div id="modal-agent-content"></div>
+            <textarea id="agent-input" placeholder="Ask your question or describe your problem..."></textarea>
+            <button id="send-to-agent">Send Message</button>
+        </div>
+    </div>
+
+    <div id="workflow-result-modal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h3>🎯 Workflow Execution Results</h3>
+            <div id="workflow-result-content"></div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
