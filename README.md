@@ -34,28 +34,58 @@
 - Regional salary multipliers (San Francisco: 1.8x, New York: 1.6x, Toronto: 1.2x)
 - Cross-border career opportunity analysis
 
-## 🏗️ **Detailed System Architecture**
+## 🏗️ **System Architecture**
 
-### **📊 System Overview**
-SkillForge AI is a North American career intelligence platform built with FastAPI, CrewAI multi-agent system, and machine learning analytics serving 14 major cities across Canada and USA.
+SkillForge AI is a North American career intelligence platform built with **FastAPI backend**, **CrewAI multi-agent system**, and **machine learning analytics** serving **14 major cities** across Canada and USA. The system processes **3000 career profiles** with **93.6% salary prediction accuracy** using a 6-layer architecture:
 
-### **🎯 Core Components Architecture**
+**Frontend Layer** → **API Gateway** → **Multi-Agent Intelligence** → **ML Engine** → **Database Layer** → **Configuration**
 
-#### **1. Frontend Layer (Client-Side)**
 ```
-📁 frontend/
-├── 🎨 templates/index.html          # Main UI with North American city selector
-├── 📱 static/script.js              # Career analysis, workflow creation, API calls  
-├── 🎨 static/style.css              # Responsive design, agent cards, analytics
-└── 📊 static/analytics.css/js       # Dashboard visualization components
+🌐 Frontend (HTML5/JS/CSS)
+├── 📱 templates/index.html          # North American city selector (🇨🇦🇺🇸)
+├── 🎨 static/script.js              # Career analysis, workflow creation, API calls
+├── 💅 static/style.css              # Responsive design, agent cards
+└── 📊 static/analytics.js           # Dashboard visualization
+
+⚡ FastAPI Gateway  
+├── 🔌 career_intelligence_routes.py  # ML predictions, market analysis
+├── 🔄 workflow_routes.py            # CrewAI workflow CRUD, background execution  
+├── 🤖 agent_routes.py               # Multi-agent interactions
+├── 📊 analytics_routes.py           # Dashboard data endpoints
+└── 🛡️ middleware/                   # CORS, request validation
+
+🧠 CrewAI Multi-Agent Intelligence
+├── 🤖 Analysis Agent        # Strategic career planning, market research
+├── 🔄 Workflow Agent        # Process orchestration, task breakdown
+└── ⚡ Execution Agent       # Implementation planning, resource allocation
+
+🎯 ML Career Intelligence Engine
+├── 💰 Salary Predictor      # Gradient Boosting (93.6% R²)
+├── 🎯 Job Matcher          # Random Forest (74% accuracy)
+├── 📈 Career Classifier     # Random Forest (100% accuracy)
+└── 🗺️ Market Analyzer       # North American market insights
+
+💾 Database Layer
+├── 🗃️ SQLite               # Workflow persistence, execution history
+├── 🍃 MongoDB              # Career data, user sessions
+└── 💾 In-Memory Store      # Active workflow states, cache
+
+🌍 North American Market Data (14 Cities)
+🇨🇦 Canada (CAD): Toronto (1.2x), Vancouver (1.15x), Montreal (1.0x), Ottawa (1.1x), Calgary (1.08x), Edmonton (1.05x)
+🇺🇸 USA (USD): San Francisco (1.8x), New York (1.6x), Seattle (1.4x), Boston (1.3x), Los Angeles (1.25x), Austin (1.2x), Chicago (1.15x), Denver (1.1x)
 ```
 
-**Technologies**: HTML5, Vanilla JavaScript, CSS Grid, Responsive Design  
-**Features**: 🇨🇦🇺🇸 Dual-country city selector, Real-time career analysis, Agent interaction UI
+**System Flows:** User Input → Frontend Validation → FastAPI → ML Engine → Market Analysis → Currency Detection → Dashboard → JSON Response | Workflow Creation → CrewAI Agents → Strategic Planning → Task Breakdown → SQLite Storage | Background Execution → FastAPI Tasks → CrewAI Processing → Status Updates → Result Storage
 
-#### **2. API Gateway Layer (FastAPI)**
-```
-📁 api/
+**Tech Stack:** Frontend (HTML5/CSS3/JS), API (FastAPI + Uvicorn), Intelligence (CrewAI + OpenAI), ML (Scikit-learn), Data (Pandas + NumPy), Database (SQLite + MongoDB), Runtime (Python 3.9+)
+
+**Key Decisions:** Multi-Agent Architecture for complex career planning, Dual USD/CAD market support with regional multipliers, Background processing for long-running operations, Pre-trained ML models for performance, RESTful API design, Responsive vanilla JS frontend
+
+**Performance:** 93.6% salary prediction accuracy, 3000 North American profiles, <200ms API response, 30-60s workflow generation, 2-3min background execution
+
+## 🚀 Quick Start
+
+### Prerequisites
 ├── 🔌 routes/
 │   ├── career_intelligence_routes.py  # ML predictions, market analysis
 │   ├── workflow_routes.py            # CrewAI workflow CRUD, background execution
