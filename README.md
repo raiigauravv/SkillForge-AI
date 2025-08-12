@@ -457,19 +457,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Regional Market Research**: Cost of living and salary data for 14 major cities
 - **Open Source Community**: For the tools and libraries that make this possible
 
-## 📞 Support
-
-- **Documentation**: [Wiki](https://github.com/raiigauravv/SkillForge-AI/wiki)
-- **Issues**: [GitHub Issues](https://github.com/raiigauravv/SkillForge-AI/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/raiigauravv/SkillForge-AI/discussions)
-- **Email**: support@skillforge.ai
-
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=raiigauravv/SkillForge-AI&type=Date)](https://star-history.com/#raiigauravv/SkillForge-AI&Date)
-
 ---
 
 **Made with ❤️ by the SkillForge AI Team**
-
-**[⭐ Star this repository](https://github.com/raiigauravv/SkillForge-AI) if you find it helpful!**
