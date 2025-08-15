@@ -54,8 +54,9 @@ async def api_root():
     return {
         "message": "🚀 SkillForge AI - Career Intelligence Platform",
         "status": "running",
-        "version": "1.0.0",
-        "deployment": "simplified"
+        "version": "1.0.0", 
+        "deployment": "simplified",
+        "timestamp": "2025-01-15-FIXED"
     }
 
 @app.get("/health")
