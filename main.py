@@ -106,14 +106,22 @@ async def system_info():
     }
 
 if __name__ == "__main__":
+    import os
+    
+    # Railway deployment configuration
+    port = int(os.environ.get("PORT", settings.PORT))
+    host = "0.0.0.0"  # Railway requires 0.0.0.0
+    debug = os.environ.get("DEBUG", "False").lower() == "true"
+    
     logger.info(f"Starting {settings.APP_NAME} v{settings.APP_VERSION}")
-    logger.info(f"Running on {settings.HOST}:{settings.PORT}")
+    logger.info(f"Running on {host}:{port}")
     logger.info("Framework: CrewAI - Multi-Agent Workflow Automation")
+    logger.info("Environment: Production deployment ready")
     
     uvicorn.run(
         "main:app",
-        host=settings.HOST,
-        port=settings.PORT,
-        reload=settings.DEBUG,
+        host=host,
+        port=port,
+        reload=debug,
         log_level=settings.LOG_LEVEL.lower()
     )
