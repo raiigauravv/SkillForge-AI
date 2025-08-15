@@ -84,15 +84,34 @@ async def analytics_dashboard(request: Request):
 
 # Import route modules (simplified versions)
 try:
-    from api.routes import career_intelligence_routes, analytics_routes, agent_routes, workflow_routes
+    from api.routes import career_intelligence_routes, analytics_routes
+    # Temporarily disable agent and workflow routes due to MongoDB dependencies
+    # from api.routes import agent_routes, workflow_routes
     
-    # Include routers with correct prefixes
-    app.include_router(agent_routes.router, prefix="/api/agents", tags=["Agents"])
+    # Include working routers
     app.include_router(career_intelligence_routes.router, prefix="/api/career", tags=["Career Intelligence"])
     app.include_router(analytics_routes.router, prefix="/api/analytics", tags=["Analytics"])
-    app.include_router(workflow_routes.router, prefix="/api/workflows", tags=["Workflows"])
     
-    print("✅ All routes loaded successfully")
+    # Add a simple agent interaction endpoint
+    @app.post("/api/agents/interact")
+    async def simple_agent_interact(request: dict):
+        return {
+            "status": "success",
+            "message": "🤖 AI Agent Response: This is a simplified response for the free deployment. Full agent functionality requires database setup.",
+            "agent_type": request.get("agent_type", "unknown"),
+            "response": "I'm a simplified AI agent. In the full version, I would provide detailed analysis and workflow recommendations using CrewAI multi-agent system.",
+            "timestamp": "2025-01-15"
+        }
+    
+    @app.get("/api/workflows/list")
+    async def simple_workflows():
+        return {
+            "workflows": [
+                {"id": 1, "name": "Sample Workflow", "status": "active", "description": "Demo workflow for simplified deployment"}
+            ]
+        }
+    
+    print("✅ Simplified routes loaded successfully (MongoDB-free)")
 except ImportError as e:
     print(f"⚠️ Some routes not available: {e}")
 
