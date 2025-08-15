@@ -48,6 +48,15 @@ app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+# DEBUGGING: Simple HTML test route
+@app.get("/test")
+async def test_html():
+    return {"test": "If you see this JSON, templates are broken. If you see HTML, templates work."}
+
+@app.get("/testhtml")  
+async def test_html_route(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
 # API health check endpoint
 @app.get("/api")
 async def api_root():
