@@ -56,7 +56,8 @@ async def health_check():
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
         "version": "1.0.0",
-        "environment": "production"
+        "environment": "production",
+        "deployment": "railway_fixed"
     }
 
 # Simple agent endpoints (no MongoDB/CrewAI dependencies)
