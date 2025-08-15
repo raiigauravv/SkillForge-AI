@@ -43,9 +43,14 @@ app.add_middleware(
 templates = Jinja2Templates(directory="frontend/templates")
 app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
 
-# Health check endpoint
+# Main page route - serve HTML dashboard at root
 @app.get("/")
-async def root():
+async def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+# API health check endpoint
+@app.get("/api")
+async def api_root():
     return {
         "message": "🚀 SkillForge AI - Career Intelligence Platform",
         "status": "running",
@@ -57,7 +62,7 @@ async def root():
 async def health_check():
     return {"status": "healthy", "database": "not_required"}
 
-# Main page route
+# Additional page routes
 @app.get("/dashboard")
 async def dashboard(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
