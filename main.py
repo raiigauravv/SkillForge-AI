@@ -84,11 +84,13 @@ async def analytics_dashboard(request: Request):
 
 # Import route modules (simplified versions)
 try:
-    from api.routes import career_intelligence_routes, analytics_routes
+    from api.routes import career_intelligence_routes, analytics_routes, agent_routes, workflow_routes
     
-    # Include routers
+    # Include routers with correct prefixes
+    app.include_router(agent_routes.router, prefix="/api/agents", tags=["Agents"])
     app.include_router(career_intelligence_routes.router, prefix="/api/career", tags=["Career Intelligence"])
     app.include_router(analytics_routes.router, prefix="/api/analytics", tags=["Analytics"])
+    app.include_router(workflow_routes.router, prefix="/api/workflows", tags=["Workflows"])
     
     print("✅ All routes loaded successfully")
 except ImportError as e:
