@@ -1,0 +1,4 @@
+# FORCE RAILWAY REBUILD
+# This file forces Railway to detect changes and redeploy
+TIMESTAMP=2025-01-15-16:30-FORCE-REBUILD
+VERSION=FIXED

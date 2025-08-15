@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-SkillForge AI - Simplified Deployment Version
+SkillForge AI - FORCE REDEPLOY VERSION
 Production-ready FastAPI application optimized for free hosting
+DEPLOYMENT TIMESTAMP: 2025-01-15-16:30-FORCE-REBUILD
 """
 
 import os
