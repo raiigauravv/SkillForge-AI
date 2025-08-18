@@ -99,3 +99,17 @@ data/sensitive/
 secrets.json
 credentials.json
 **/config/secrets.py
+
+# Temporary and log files
+*.log
+app_output.log
+*.lock
+chromadb-*.lock
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/settings.json
+.idea/

@@ -1028,6 +1028,23 @@ function showWorkflowDetailsModal(workflow) {
                 <div class="ai-output-container">
                     <div class="ai-output">${output}</div>
                 </div>
+                
+                <!-- Follow-up Conversation Section -->
+                <div class="workflow-followup-section">
+                    <h4>💬 Ask Follow-up Questions:</h4>
+                    <div class="followup-conversation" id="followup-conversation-${workflow.workflow_id}">
+                        <!-- Previous follow-ups will be loaded here -->
+                    </div>
+                    <div class="followup-input-section">
+                        <input type="text" 
+                               id="followup-input-${workflow.workflow_id}" 
+                               placeholder="Ask a follow-up question about this workflow..."
+                               class="followup-input">
+                        <button onclick="sendWorkflowFollowup('${workflow.workflow_id}')" 
+                                id="followup-btn-${workflow.workflow_id}"
+                                class="followup-btn">Send</button>
+                    </div>
+                </div>
             </div>
             
             <div class="details-footer">
@@ -1056,3 +1073,133 @@ window.onclick = function(event) {
         modal.style.display = 'none';
     }
 }
+
+// Global conversation history for workflow follow-ups
+const workflowConversations = {};
+
+// Send workflow follow-up message
+async function sendWorkflowFollowup(workflowId) {
+    const input = document.getElementById(`followup-input-${workflowId}`);
+    const btn = document.getElementById(`followup-btn-${workflowId}`);
+    const conversation = document.getElementById(`followup-conversation-${workflowId}`);
+    
+    const message = input.value.trim();
+    if (!message) return;
+    
+    // Initialize conversation history if not exists
+    if (!workflowConversations[workflowId]) {
+        workflowConversations[workflowId] = [];
+    }
+    
+    // Add user message to conversation
+    const userMessageDiv = document.createElement('div');
+    userMessageDiv.className = 'followup-message user-message';
+    userMessageDiv.innerHTML = `
+        <div class="message-header">
+            <strong>You:</strong>
+            <span class="message-time">${new Date().toLocaleTimeString()}</span>
+        </div>
+        <div class="message-content">${message}</div>
+    `;
+    conversation.appendChild(userMessageDiv);
+    
+    // Add to conversation history
+    workflowConversations[workflowId].push({role: "user", content: message});
+    
+    // Show loading
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'followup-message agent-message loading';
+    loadingDiv.innerHTML = `
+        <div class="message-header">
+            <strong>AI Assistant:</strong>
+            <span class="message-time">${new Date().toLocaleTimeString()}</span>
+        </div>
+        <div class="message-content">🤔 Thinking...</div>
+    `;
+    conversation.appendChild(loadingDiv);
+    
+    // Clear input and disable button
+    input.value = '';
+    btn.disabled = true;
+    btn.textContent = 'Processing...';
+    
+    // Scroll to bottom
+    conversation.scrollTop = conversation.scrollHeight;
+    
+    try {
+        const response = await fetch(`/api/workflows/followup/${workflowId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                message: message,
+                conversation_history: workflowConversations[workflowId].slice(-6) // Keep last 6 messages
+            })
+        });
+        
+        const result = await response.json();
+        
+        // Remove loading message
+        conversation.removeChild(loadingDiv);
+        
+        if (response.ok && result.response) {
+            // Add assistant response
+            const assistantMessageDiv = document.createElement('div');
+            assistantMessageDiv.className = 'followup-message agent-message';
+            assistantMessageDiv.innerHTML = `
+                <div class="message-header">
+                    <strong>AI Assistant:</strong>
+                    <span class="message-time">${new Date(result.timestamp).toLocaleTimeString()}</span>
+                </div>
+                <div class="message-content">${result.response}</div>
+            `;
+            conversation.appendChild(assistantMessageDiv);
+            
+            // Add to conversation history
+            workflowConversations[workflowId].push({role: "assistant", content: result.response});
+            
+        } else {
+            // Show error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'followup-message error-message';
+            errorDiv.innerHTML = `
+                <div class="message-header">
+                    <strong>Error:</strong>
+                    <span class="message-time">${new Date().toLocaleTimeString()}</span>
+                </div>
+                <div class="message-content">${result.detail || 'Failed to get response'}</div>
+            `;
+            conversation.appendChild(errorDiv);
+        }
+        
+    } catch (error) {
+        // Remove loading and show error
+        conversation.removeChild(loadingDiv);
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'followup-message error-message';
+        errorDiv.innerHTML = `
+            <div class="message-header">
+                <strong>Error:</strong>
+                <span class="message-time">${new Date().toLocaleTimeString()}</span>
+            </div>
+            <div class="message-content">Network error. Please try again.</div>
+        `;
+        conversation.appendChild(errorDiv);
+    }
+    
+    // Re-enable button
+    btn.disabled = false;
+    btn.textContent = 'Send';
+    
+    // Scroll to bottom
+    conversation.scrollTop = conversation.scrollHeight;
+}
+
+// Allow Enter key to send follow-up message
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && event.target.classList.contains('followup-input')) {
+        const workflowId = event.target.id.replace('followup-input-', '');
+        sendWorkflowFollowup(workflowId);
+    }
+});

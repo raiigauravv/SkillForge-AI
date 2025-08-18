@@ -428,3 +428,78 @@ async def get_crews_status():
     except Exception as e:
         logger.error(f"Error getting crews status: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+class WorkflowFollowUpRequest(BaseModel):
+    message: str
+    conversation_history: List[Dict[str, str]] = []
+
+@router.post("/followup/{workflow_id}")
+async def workflow_followup(workflow_id: str, request: WorkflowFollowUpRequest):
+    """Handle follow-up questions for a specific workflow"""
+    try:
+        if workflow_id not in workflows_db:
+            raise HTTPException(status_code=404, detail="Workflow not found")
+        
+        workflow = workflows_db[workflow_id]
+        
+        # Import OpenAI for follow-up processing
+        import openai
+        import os
+        
+        # Get the workflow context and original result
+        workflow_context = f"""
+        Workflow: {workflow.get('name', 'Unnamed')}
+        Description: {workflow.get('description', 'No description')}
+        Original Result: {workflow.get('result', {}).get('output', 'No result available')}
+        Status: {workflow.get('status', 'unknown')}
+        """
+        
+        # Create system prompt for follow-up
+        system_prompt = f"""You are an AI assistant helping with follow-up questions about a specific workflow.
+        
+        WORKFLOW CONTEXT:
+        {workflow_context}
+        
+        The user is asking a follow-up question about this workflow. Provide helpful, specific answers based on the workflow context and your expertise. Be conversational and helpful."""
+        
+        # Build conversation history
+        messages = [{"role": "system", "content": system_prompt}]
+        
+        # Add conversation history if provided
+        for msg in request.conversation_history[-5:]:  # Keep last 5 messages
+            messages.append({"role": msg["role"], "content": msg["content"]})
+        
+        # Add current user message
+        messages.append({"role": "user", "content": request.message})
+        
+        # Get OpenAI response
+        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=messages,
+            max_tokens=1000,
+            temperature=0.7
+        )
+        
+        assistant_response = response.choices[0].message.content
+        
+        # Store the follow-up in workflow history
+        if 'followup_history' not in workflows_db[workflow_id]:
+            workflows_db[workflow_id]['followup_history'] = []
+        
+        workflows_db[workflow_id]['followup_history'].append({
+            "user_message": request.message,
+            "assistant_response": assistant_response,
+            "timestamp": datetime.now().isoformat()
+        })
+        
+        return {
+            "response": assistant_response,
+            "workflow_id": workflow_id,
+            "timestamp": datetime.now().isoformat(),
+            "status": "success"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error in workflow follow-up: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Follow-up failed: {str(e)}")
